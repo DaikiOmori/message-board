@@ -1,21 +1,26 @@
-<%= form_for(message) do |f| %>
-  <% if message.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
-
-      <ul>
-        <% message.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class="row">
+  <div class="col-xs-6" >
+    <%= form_for(message) do |f| %>
+      <% if message.errors.any? %>
+        <div class="alert alert-warning">
+          <ul>
+            <% message.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+  
+    <div class="form-group">
+      <%= f.label :title, 'タイトル' %>
+      <%= f.text_field :title, class: 'form-control' %>
     </div>
-  <% end %>
   
-  <%= f.label :title, 'タイトル' %>
-  <%= f.text_field :title %>
-  
-  <%= f.label :content, 'メッセージ' %>
-  <%= f.text_field :content %>
-
-  <%= f.submit '投稿' %>
-<% end %>
+    <div class="form-group">
+      <%= f.label :content, 'メッセージ' %>
+      <%= f.text_field :content, class: 'form-control' %>
+    
+      <%= f.submit '投稿', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
